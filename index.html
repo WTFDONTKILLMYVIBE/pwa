@@ -11,30 +11,39 @@
     body {
       margin: 0;
       padding: 0;
-      position: relative;
       min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      background: #f8f8f8;
+    }
+
+    .scene {
+      position: relative;
+      width: 100%;
+      max-width: 428px;
+      aspect-ratio: 1284 / 2653;
       background: url('background.png') no-repeat center top;
-      background-size: 100% auto;
-      background-attachment: scroll;
+      background-size: contain;
       overflow: hidden;
     }
 
     .bus-track {
       position: absolute;
-      top: 20.59%;
-      left: 42%;
-      width: 17.3%;
-      height: 2.8%;
+      top: 22.5%;
+      left: 34%;
+      width: 30%;
+      height: 5.5%;
       background-color: #c5ccd7;
+      border-radius: 999px;
       z-index: 5;
     }
 
     .bus-icon {
       position: absolute;
-      top: 20.59%;
-      left: 47.4%;
-      width: 4.5%;
-      height: 2.8%;
+      top: 22.5%;
+      left: 43.5%;
+      width: 10.5%;
+      height: 5.5%;
       z-index: 10;
       background-color: #c5ccd7;
       background-image: url('bus-icon1.png');
@@ -45,34 +54,38 @@
     }
 
     @media (max-width: 900px) {
+      .scene {
+        max-width: 100%;
+      }
+
       .bus-track {
-        top: 26.5%;
+        top: 24.5%;
         left: 33%;
-        width: 28%;
-        height: 5.2%;
+        width: 32%;
+        height: 6%;
       }
 
       .bus-icon {
-        top: 26.5%;
-        left: 42.5%;
-        width: 8.2%;
-        height: 5.2%;
+        top: 24.5%;
+        left: 43.5%;
+        width: 11.5%;
+        height: 6%;
       }
     }
 
     @media (max-width: 520px) {
       .bus-track {
-        top: 28.5%;
+        top: 27%;
         left: 31.5%;
-        width: 30%;
-        height: 5.8%;
+        width: 36%;
+        height: 6.8%;
       }
 
       .bus-icon {
-        top: 28.5%;
-        left: 43%;
-        width: 8.8%;
-        height: 5.8%;
+        top: 27%;
+        left: 44.5%;
+        width: 12.5%;
+        height: 6.8%;
       }
     }
 
@@ -84,10 +97,11 @@
   </style>
 </head>
 
-<body style="margin:0; padding:0; background:url('background.png') no-repeat center top fixed; background-size:contain; position: relative; min-height: 100vh; overflow: hidden;">
-  <div class="bus-track"></div>
-  <div class="bus-icon"></div>
-  <!-- Vollbild Hintergrund -->
+<body>
+  <div class="scene">
+    <div class="bus-track"></div>
+    <div class="bus-icon"></div>
+  </div>
 </body>
 
 <script>
