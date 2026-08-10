@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="manifest" href="manifest.json">
+  <title>PWA Test</title>
+</head>
+
+<body style="margin:0; padding:0; background:url('background.png') no-repeat center center fixed; background-size:cover;">
+  <!-- Vollbild Hintergrund -->
+</body>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log("SW ok", reg))
+      .catch(err => console.error("SW fail", err));
+  }
+</script>
+</html>
