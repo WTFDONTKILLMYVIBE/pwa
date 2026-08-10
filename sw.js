@@ -1,10 +1,9 @@
 const CACHE = "v1";
 const ASSETS = [
-  "/",
-  "/index.html",
-  "/manifest.json",
-  "/sw.js",
-  "/background.png"
+  "index.html",
+  "manifest.json",
+  "sw.js",
+  "background.png"
 ];
 
 self.addEventListener("install", e => {
