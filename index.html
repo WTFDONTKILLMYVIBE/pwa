@@ -13,8 +13,9 @@
       padding: 0;
       position: relative;
       min-height: 100vh;
-      background: url('background.png') no-repeat center top fixed;
+      background: url('background.png') no-repeat center top;
       background-size: 100% auto;
+      background-attachment: scroll;
       overflow: hidden;
     }
 
@@ -43,19 +44,35 @@
       animation: drive 15.25s ease-in-out infinite;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       .bus-track {
-        top: 24%;
-        left: 38%;
-        width: 24%;
-        height: 4.5%;
+        top: 26.5%;
+        left: 33%;
+        width: 28%;
+        height: 5.2%;
       }
 
       .bus-icon {
-        top: 24%;
-        left: 44%;
-        width: 7%;
-        height: 4.5%;
+        top: 26.5%;
+        left: 42.5%;
+        width: 8.2%;
+        height: 5.2%;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .bus-track {
+        top: 28.5%;
+        left: 31.5%;
+        width: 30%;
+        height: 5.8%;
+      }
+
+      .bus-icon {
+        top: 28.5%;
+        left: 43%;
+        width: 8.8%;
+        height: 5.8%;
       }
     }
 
