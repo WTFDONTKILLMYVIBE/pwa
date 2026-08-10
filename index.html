@@ -20,7 +20,7 @@
 
     .bus-track {
       position: absolute;
-      top: calc(20.59%);
+      top: 20.59%;
       left: 42%;
       width: 17.3%;
       height: 2.8%;
@@ -30,7 +30,7 @@
 
     .bus-icon {
       position: absolute;
-      top: calc(20.59%);
+      top: 20.59%;
       left: 47.4%;
       width: 4.5%;
       height: 2.8%;
@@ -41,6 +41,22 @@
       background-size: contain;
       background-position: center;
       animation: drive 15.25s ease-in-out infinite;
+    }
+
+    @media (max-width: 768px) {
+      .bus-track {
+        top: 24%;
+        left: 38%;
+        width: 24%;
+        height: 4.5%;
+      }
+
+      .bus-icon {
+        top: 24%;
+        left: 44%;
+        width: 7%;
+        height: 4.5%;
+      }
     }
 
     @keyframes drive {
