@@ -7,9 +7,40 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <link rel="manifest" href="manifest.json">
   <title>PWA Test</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      position: relative;
+      min-height: 100vh;
+      background: url('background.png') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
+    }
+
+    .bus-icon {
+      position: absolute;
+      top: 4.1458%;
+      left: 20%;
+      width: 10.2539%;
+      height: 4.3603%;
+      background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAMEBgUGBgYFBgYGBwkIBgcJBwYGCAsICQoKCgoKBggLDAsKDAkKCgr/2wBDAQICAgICAgUDAwUKBwYHCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgr/wAARCAV3BAADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9JLybvUdFV6+kPPLnn+1V5pvNqvNN5Muar3mpWNnF+/n8qlV9jYzrfwT5L/aL8beObPxveWMGuXMVv537mGvK9S1LVb2Xz76+kkr3z9q7wHPrFzHrnhyDzY5f9dLFXz/eQz2cvkT/AOsr4/G+2PxrOqdanjPfO8+GP7SHj/4eyx2M+qy3Nn/zyr6U+G/x+8OePIo4Z77yriviOb/ph+FXNH8SaroN/HfWE/lSVlgs29jW/eHRlGf4vL/3Z+iHnfuqk8/2r5n+Ev7Wk9nFHY+I5/Njr3Tw3428OeKrXztK1WOX/pjX1OCx1HFH6Rlub4PMEbk377/UT9qrz9qKk/5a121P4p6JHR5/tUk0NRzQz9a1qexHVCiDvR/yyqT91RS9j7ERJB3qx5x/6a1XhPnQ/uKPJuPSX/vxWVICxR5s3rVPzv3uJ6Lyb7H0noq/xQNCGbyqsef7Vl6bN9sm/wBfWh+6oqnQWIZv+m9Hn+1U6IZqALnn+1Sef7VnzTeTLmjzp4YvPgoqAaH72jzv+m9U7O8+2VHeXk9nLWlP2IGh5/tVfz/ao/O/d+dio/P9q5/+Xxzljz/apPO/6b1TmmqOa88mL/X1pUsdBoed/wBN6j8/2rLh1LzpakmvDDLz/wAta0XsQNDzv+m9FU/33lef5FR/2liXyJ/3VZ/xQNDz/ao/P9qpzXgi/wCWFE037qtafsfZE0y5n/pv+lEM3/TesuG886WSrEM1ZUjHqaFHmzetV/8All/zy/7Y1H/raKptUqFzz/ajzv8ApvVf/llRQUWMTf8APxUnnf8ATesv+0p4ZfI8irHnfu/OxRSJplzzv+m9H72o/O/dR5FRzTT9KKn8Uy/ehn/pv+lHnf8ATeo/P9qj8/2rXEdDWoXPO/6b0Qzf9N6p1HDP+98ilU/hB/y6Ln/Lb/X0ed/03qneaxBZxVTs9Y+2S1GG/ghTNj7Z7/pR5/tVPzv3nk4o/fw0qRRc8/2qSGas/wA791R58/8Ay3oq/wAUDU82b1oqnDmX/lv/AOQapzal5MvkT0E1DU87/pvR508PSs+a88mLz6jh1P7Z5lv5H+qrSnuUan23/ptVjzv+m9ZeP+mH61JD/wAtKz/5fH [truncated]');
+      background-repeat: no-repeat;
+      background-size: 975.24% 2293.44%;
+      background-position: 63.99% 4.34%;
+      animation: drive 5.5s ease-in-out infinite;
+    }
+
+    @keyframes drive {
+      0%   { left: 20%; }
+      50%  { left: 69.75%; }
+      100% { left: 20%; }
+    }
+  </style>
 </head>
 
-<body style="margin:0; padding:0; background:url('background.png') no-repeat center center fixed; background-size:cover;">
+<body style="margin:0; padding:0; background:url('background.png') no-repeat center center fixed; background-size:cover; position: relative; min-height: 100vh; overflow: hidden;">
+  <div class="bus-icon"></div>
   <!-- Vollbild Hintergrund -->
 </body>
 
