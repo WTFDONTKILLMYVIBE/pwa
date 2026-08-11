@@ -159,7 +159,8 @@
     <div class="sensor-overlay__box">
       <h1 class="sensor-overlay__title">Bewegungssensor aktivieren</h1>
       <p class="sensor-overlay__text">Tippe einmal, um den Zugriff auf die Neigungssensoren deines iPhones zu erlauben. Danach bewegt sich der Bus je nach deiner iPhone-Position.</p>
-      <button class="sensor-overlay__button" id="sensorButton">Sensor starten</button>
+      <button type="button" class="sensor-overlay__button" id="sensorButton">Sensor starten</button>
+      <p class="sensor-overlay__status" id="sensorStatus"></p>
     </div>
   </div>
 </body>
@@ -173,6 +174,7 @@
 
   const sensorOverlay = document.getElementById('sensorOverlay');
   const sensorButton = document.getElementById('sensorButton');
+  const sensorStatus = document.getElementById('sensorStatus');
   const busIcon = document.querySelector('.bus-icon');
   let useSensor = false;
   const minLeft = 24.4;
@@ -189,44 +191,66 @@
 
   function handleOrientation(event) {
     if (!useSensor) return;
-    const angle = event.gamma ?? 0;
+    const angle = event.gamma ?? event.beta ?? 0;
     updateBusPosition(angle);
   }
 
+  function handleMotion(event) {
+    if (!useSensor) return;
+    const gravityX = event.accelerationIncludingGravity?.x;
+    if (gravityX == null) return;
+    updateBusPosition(-gravityX * 9);
+  }
+
   async function enableSensor() {
+    sensorButton.disabled = true;
+    sensorButton.textContent = 'Ermögliche Sensorzugriff...';
+
     const activate = () => {
-      window.addEventListener('deviceorientation', handleOrientation, true);
+      window.addEventListener('deviceorientation', handleOrientation);
+      window.addEventListener('devicemotion', handleMotion);
       useSensor = true;
       busIcon.style.animation = 'none';
       sensorOverlay.classList.add('hidden');
     };
 
-    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-      try {
+    try {
+      if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
         const permission = await DeviceOrientationEvent.requestPermission();
         if (permission === 'granted') {
           activate();
-        } else {
-          console.warn('Device orientation permission denied');
+          return;
         }
-      } catch (error) {
-        console.warn('Device orientation permission error', error);
+        sensorStatus.textContent = 'Sensorzugriff wurde nicht gewährt. Versuche es dennoch.';
+        console.warn('Device orientation permission denied', permission);
+        activate();
+        return;
       }
-    } else if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
-      try {
+
+      if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
         const permission = await DeviceMotionEvent.requestPermission();
         if (permission === 'granted') {
           activate();
-        } else {
-          console.warn('Device motion permission denied');
+          return;
         }
-      } catch (error) {
-        console.warn('Device motion permission error', error);
+        sensorStatus.textContent = 'Sensorzugriff wurde nicht gewährt. Versuche es dennoch.';
+        console.warn('Device motion permission denied', permission);
+        activate();
+        return;
       }
-    } else {
+
       activate();
+    } catch (error) {
+      console.warn('Sensor permission request failed', error);
+      activate();
+    } finally {
+      sensorButton.disabled = false;
+      if (sensorButton.textContent !== 'Zugriff verweigert') {
+        sensorButton.textContent = 'Sensor starten';
+      }
     }
   }
 
   sensorButton.addEventListener('click', enableSensor);
-  sensorButton.addEventListener('touchstart', enableSensor);
+  sensorButton.addEventListener('touchend', enableSensor);
+  sensorButton.addEventListener('pointerup', enableSensor);
