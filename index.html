@@ -11,81 +11,68 @@
     body {
       margin: 0;
       padding: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      background: #f8f8f8;
-    }
-
-    .scene {
       position: relative;
-      width: 100%;
-      max-width: 428px;
-      aspect-ratio: 1284 / 2653;
-      background: url('background.png') no-repeat center top;
+      min-height: 100vh;
+      background: url('background.png') no-repeat top center;
       background-size: contain;
+      background-attachment: scroll;
       overflow: hidden;
     }
 
     .bus-track {
       position: absolute;
-      top: 22.5%;
-      left: 34%;
-      width: 30%;
-      height: 5.5%;
+      top: 18.75%;
+      left: 42%;
+      width: 17.3%;
+      height: 2.8%;
       background-color: #c5ccd7;
-      border-radius: 999px;
       z-index: 5;
     }
 
     .bus-icon {
       position: absolute;
-      top: 22.5%;
-      left: 43.5%;
-      width: 10.5%;
-      height: 5.5%;
+      top: 18.75%;
+      left: 47.4%;
+      width: 4.5%;
+      height: 2.8%;
       z-index: 10;
       background-color: #c5ccd7;
       background-image: url('bus-icon1.png');
       background-repeat: no-repeat;
-      background-size: contain;
+      background-size: 100% 100%;
       background-position: center;
       animation: drive 15.25s ease-in-out infinite;
     }
 
     @media (max-width: 900px) {
-      .scene {
-        max-width: 100%;
-      }
-
       .bus-track {
-        top: 24.5%;
-        left: 33%;
-        width: 32%;
-        height: 6%;
+        top: 19.2%;
+        left: 41.8%;
+        width: 18.5%;
+        height: 3.1%;
       }
 
       .bus-icon {
-        top: 24.5%;
-        left: 43.5%;
-        width: 11.5%;
-        height: 6%;
+        top: 19.2%;
+        left: 48%;
+        width: 5.0%;
+        height: 3.1%;
       }
     }
 
     @media (max-width: 520px) {
       .bus-track {
-        top: 27%;
-        left: 31.5%;
-        width: 36%;
-        height: 6.8%;
+        top: 19.8%;
+        left: 41.5%;
+        width: 19.2%;
+        height: 3.4%;
       }
 
       .bus-icon {
-        top: 27%;
-        left: 44.5%;
-        width: 12.5%;
-        height: 6.8%;
+        top: 19.8%;
+        left: 48.3%;
+        width: 5.4%;
+        height: 3.4%;
       }
     }
 
@@ -98,10 +85,8 @@
 </head>
 
 <body>
-  <div class="scene">
-    <div class="bus-track"></div>
-    <div class="bus-icon"></div>
-  </div>
+  <div class="bus-track"></div>
+  <div class="bus-icon"></div>
 </body>
 
 <script>
