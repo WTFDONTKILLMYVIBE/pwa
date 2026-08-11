@@ -45,6 +45,67 @@
       animation: drive 9s ease-in-out infinite;
     }
 
+    .sensor-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.75);
+      color: white;
+      z-index: 99;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .sensor-overlay__box {
+      max-width: 420px;
+      width: 100%;
+      background: rgba(20, 20, 20, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .sensor-overlay__title {
+      margin: 0 0 16px;
+      font-size: 1.3rem;
+      line-height: 1.2;
+    }
+
+    .sensor-overlay__text {
+      margin: 0 0 24px;
+      font-size: 1rem;
+      line-height: 1.55;
+      color: #d7d7d7;
+    }
+
+    .sensor-overlay__button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 14px 18px;
+      background: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .sensor-overlay__button:hover {
+      transform: translateY(-1px);
+      background: #3b78c2;
+    }
+
+    .sensor-overlay.hidden {
+      display: none;
+    }
+
     @media (max-width: 900px) {
       .bus-track {
         top: calc(19.2% - 1px);
@@ -90,6 +151,14 @@
 <body>
   <div class="bus-track"></div>
   <div class="bus-icon"></div>
+
+  <div class="sensor-overlay" id="sensorOverlay">
+    <div class="sensor-overlay__box">
+      <h1 class="sensor-overlay__title">Bewegungssensor aktivieren</h1>
+      <p class="sensor-overlay__text">Tippe einmal, um den Zugriff auf die Neigungssensoren deines iPhones zu erlauben. Danach bewegt sich der Bus je nach deiner iPhone-Position.</p>
+      <button class="sensor-overlay__button" id="sensorButton">Sensor starten</button>
+    </div>
+  </div>
 </body>
 
 <script>
@@ -98,6 +167,49 @@
       .then(reg => console.log("SW ok", reg))
       .catch(err => console.error("SW fail", err));
   }
-</script>
-</html>
 
+  const sensorOverlay = document.getElementById('sensorOverlay');
+  const sensorButton = document.getElementById('sensorButton');
+  const busIcon = document.querySelector('.bus-icon');
+  let useSensor = false;
+  const minLeft = 24.4;
+  const maxLeft = 64.26;
+  const trackRange = maxLeft - minLeft;
+
+  function updateBusPosition(angle) {
+    const limitedAngle = Math.max(-45, Math.min(45, angle));
+    const normalized = (limitedAngle + 45) / 90;
+    const target = minLeft + normalized * trackRange;
+    const clamped = Math.min(maxLeft, Math.max(minLeft, target));
+    busIcon.style.left = `${clamped}%`;
+  }
+
+  function handleOrientation(event) {
+    if (!useSensor) return;
+    const angle = event.gamma ?? 0;
+    updateBusPosition(angle);
+  }
+
+  async function enableSensor() {
+    const activate = () => {
+      window.addEventListener('deviceorientation', handleOrientation, true);
+      useSensor = true;
+      busIcon.style.animation = 'none';
+      sensorOverlay.classList.add('hidden');
+    };
+
+    if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+      try {
+        const permission = await DeviceMotionEvent.requestPermission();
+        if (permission === 'granted') {
+          activate();
+        }
+      } catch (error) {
+        console.warn('Sensor permission denied', error);
+      }
+    } else {
+      activate();
+    }
+  }
+
+  sensorButton.addEventListener('click', enableSensor);
