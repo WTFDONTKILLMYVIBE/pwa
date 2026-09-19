@@ -21,20 +21,20 @@
 
     .bus-track {
       position: absolute;
-      top: calc(18.75% + 2px);
+      top: calc(18.75% + 0px);
       left: 42%;
-      width: 22.49%;
-      height: calc(2.8% - 2px);
+      width: clamp(128px, 23vw, 192px);
+      height: clamp(12px, 1.9vw, 18px);
       background-color: #c5ccd7;
       z-index: 5;
     }
 
     .bus-icon {
       position: absolute;
-      top: calc(18.75% + 0px);
+      top: calc(18.75% - 2px);
       left: 24.4%;
-      width: auto;
-      height: 2.8%;
+      width: clamp(128px, 24vw, 192px);
+      height: auto;
       aspect-ratio: 50 / 27;
       z-index: 10;
       background-color: #c5ccd7;
@@ -111,34 +111,34 @@
 
     @media (max-width: 900px) {
       .bus-track {
-        top: calc(19.2% + 2px);
+        top: calc(19.2% + 0px);
         left: 41.8%;
-        width: 24.05%;
-        height: calc(3.1% - 2px);
+        width: clamp(132px, 25vw, 198px);
+        height: clamp(13px, 2.1vw, 20px);
       }
 
       .bus-icon {
-        top: calc(19.2% + 0px);
+        top: calc(19.2% - 2px);
         left: 28%;
-        width: auto;
-        height: 3.1%;
+        width: clamp(132px, 26vw, 198px);
+        height: auto;
         aspect-ratio: 50 / 27;
       }
     }
 
     @media (max-width: 520px) {
       .bus-track {
-        top: calc(20.2% + 2px);
+        top: calc(20.2% + 0px);
         left: 41.5%;
-        width: 24.96%;
-        height: calc(3.4% - 2px);
+        width: clamp(118px, 27vw, 164px);
+        height: clamp(14px, 2.4vw, 18px);
       }
 
       .bus-icon {
-        top: calc(20.2% + 0px);
+        top: calc(20.2% - 2px);
         left: 28.3%;
-        width: auto;
-        height: 3.4%;
+        width: clamp(118px, 28vw, 164px);
+        height: auto;
         aspect-ratio: 50 / 27;
       }
     }
